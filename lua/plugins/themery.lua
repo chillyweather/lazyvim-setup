@@ -5,96 +5,59 @@ return {
     priority = 1000,
     opts = {
       mappings = {
-        themery = "<leader>tt",
+        themery = "<leader>tc", -- theme change
       },
     },
     config = function()
+      -- Enable true-color support
+      vim.o.termguicolors = true
+
+      -- Setup Themery with your themes (use tables to avoid concat errors)
       require("themery").setup({
-        -- Define your list of themes
         themes = {
-          {
-            name = "Github Light",
-            colorscheme = "github_light",
-          },
-          {
-            name = "Lucario",
-            colorscheme = "lucario",
-          },
-          {
-            name = "Atom",
-            colorscheme = "atom",
-          },
-          {
-            name = "NordFox",
-            colorscheme = "nordfox",
-          },
-          {
-            name = "Nord",
-            colorscheme = "nord",
-          },
-          {
-            name = "Catppuccin Frappe",
-            colorscheme = "catppuccin-frappe",
-          },
-          {
-            name = "Github Dark",
-            colorscheme = "github_dark",
-          },
-          {
-            name = "Tokyonight Storm",
-            colorscheme = "tokyonight-storm",
-            style = "storm",
-          },
-          {
-            name = "NightFox",
-            colorscheme = "nightfox",
-          },
-          {
-            name = "Tokyonight Night",
-            colorscheme = "tokyonight-night",
-            style = "night",
-          },
-          {
-            name = "Catppuccin Mocha",
-            colorscheme = "catppuccin-mocha",
-          },
-          {
-            name = "Kanagawa",
-            colorscheme = "kanagawa-wave",
-          },
-          {
-            name = "sonokai",
-            colorscheme = "sonokai",
-            style = "atlantis",
-          },
+          { name = "Github Light", colorscheme = "github_light" },
+          { name = "DayFox", colorscheme = "dayfox" },
+          { name = "NordFox", colorscheme = "nordfox" },
+          { name = "Catppuccin Frappe", colorscheme = "catppuccin-frappe" },
+          { name = "Github Dark", colorscheme = "github_dark" },
+          { name = "Tokyonight Storm", colorscheme = "tokyonight-storm" },
+          { name = "NightFox", colorscheme = "nightfox" },
+          { name = "Catppuccin Mocha", colorscheme = "catppuccin-mocha" },
+          { name = "TeraFox", colorscheme = "terafox" },
+          { name = "Kanagawa", colorscheme = "kanagawa-wave" },
+          { name = "Sonokai", colorscheme = "sonokai" },
         },
-
-        -- Theme switching settings
-        live_preview = true, -- live preview when cycling through themes
+        live_preview = true, -- preview when cycling through themes
         remember = true, -- remember last used theme
-
-        -- Status line integration
-        statusline = {
-          separator = "->", -- separator between theme name and style
-        },
+        statusline = { separator = "->" },
       })
 
-      -- Optional: Add commands for quick access
-      vim.api.nvim_create_user_command("ThemeryPicker", function()
-        require("themery").pick()
-      end, {})
-
-      -- Optional: Add theme-specific settings
+      -- General ColorScheme tweaks
       vim.api.nvim_create_autocmd("ColorScheme", {
         pattern = "*",
         callback = function()
-          -- Customize colors after theme loads
-          -- Example: Make the line numbers more visible
           vim.cmd([[highlight LineNr guifg=#666666]])
         end,
       })
+
+      -- Set guicursor for reliable cursor color that adapts to colorscheme
+      vim.opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor/lCursor,r-cr:hor20,o:hor50"
+    
+      -- Set cursor colors to adapt to theme automatically
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "*",
+        callback = function()
+          -- This gets inverted colors from current theme for cursor
+          local bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg or "#000000"
+          local fg = vim.api.nvim_get_hl(0, { name = "Normal" }).fg or "#ffffff"
+          vim.api.nvim_set_hl(0, "Cursor", { fg = bg, bg = fg })
+          vim.api.nvim_set_hl(0, "lCursor", { fg = bg, bg = fg })
+        end,
+        group = vim.api.nvim_create_augroup("CursorHighlight", { clear = true }),
+      })
     end,
-    -- Add dependencies for your themes
+
+    -- Theme dependencies
     dependencies = {
       "folke/tokyonight.nvim",
       "catppuccin/nvim",
@@ -106,7 +69,6 @@ return {
       "projekt0n/github-nvim-theme",
       "EdenEast/nightfox.nvim",
       "sainnhe/sonokai",
-      -- Add other theme plugins as needed
     },
   },
 }
