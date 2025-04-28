@@ -15,6 +15,13 @@ return {
       -- Setup Themery with your themes (use tables to avoid concat errors)
       require("themery").setup({
         themes = {
+          { 
+            name = "Luca", 
+            colorscheme = "luca",
+            before = [[
+              vim.o.termguicolors = true
+            ]],
+          },
           { name = "Github Light", colorscheme = "github_light" },
           { name = "DayFox", colorscheme = "dayfox" },
           { name = "NordFox", colorscheme = "nordfox" },
