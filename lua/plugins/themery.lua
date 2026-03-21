@@ -15,15 +15,23 @@ return {
       -- Setup Themery with your themes (use tables to avoid concat errors)
       require("themery").setup({
         themes = {
-          { 
-            name = "Luca", 
+          {
+            name = "Luca",
             colorscheme = "luca",
             before = [[
-              vim.o.termguicolors = true
-            ]],
+          vim.o.termguicolors = true
+        ]],
           },
           { name = "Github Light", colorscheme = "github_light" },
           { name = "DayFox", colorscheme = "dayfox" },
+          {
+            name = "Iceberg Light",
+            colorscheme = "iceberg",
+            before = [[
+          vim.o.background = "light"
+        ]],
+          },
+          { name = "Catppuccin Latte", colorscheme = "catppuccin-latte" },
           { name = "NordFox", colorscheme = "nordfox" },
           { name = "Catppuccin Frappe", colorscheme = "catppuccin-frappe" },
           { name = "Github Dark", colorscheme = "github_dark" },
@@ -33,12 +41,19 @@ return {
           { name = "TeraFox", colorscheme = "terafox" },
           { name = "Kanagawa", colorscheme = "kanagawa-wave" },
           { name = "Sonokai", colorscheme = "sonokai" },
+          { name = "Solarized-osaka", colorscheme = "solarized-osaka" },
+          {
+            name = "Iceberg",
+            colorscheme = "iceberg",
+            before = [[
+          vim.o.background = "dark"
+        ]],
+          },
         },
         live_preview = true, -- preview when cycling through themes
         remember = true, -- remember last used theme
         statusline = { separator = "->" },
       })
-
       -- General ColorScheme tweaks
       vim.api.nvim_create_autocmd("ColorScheme", {
         pattern = "*",
@@ -49,7 +64,7 @@ return {
 
       -- Set guicursor for reliable cursor color that adapts to colorscheme
       vim.opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor/lCursor,r-cr:hor20,o:hor50"
-    
+
       -- Set cursor colors to adapt to theme automatically
       vim.api.nvim_create_autocmd("ColorScheme", {
         pattern = "*",
@@ -76,6 +91,8 @@ return {
       "projekt0n/github-nvim-theme",
       "EdenEast/nightfox.nvim",
       "sainnhe/sonokai",
+      "craftzdog/solarized-osaka.nvim",
+      "cocopon/iceberg.vim",
     },
   },
 }
