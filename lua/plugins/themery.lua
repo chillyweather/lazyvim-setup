@@ -23,6 +23,7 @@ return {
         ]],
           },
           { name = "Github Light", colorscheme = "github_light" },
+          { name = "Catppuccin Latte", colorscheme = "catppuccin-latte" },
           { name = "DayFox", colorscheme = "dayfox" },
           {
             name = "Iceberg Light",
@@ -41,14 +42,9 @@ return {
           { name = "TeraFox", colorscheme = "terafox" },
           { name = "Kanagawa", colorscheme = "kanagawa-wave" },
           { name = "Sonokai", colorscheme = "sonokai" },
-          { name = "Solarized-osaka", colorscheme = "solarized-osaka" },
-          {
-            name = "Iceberg",
-            colorscheme = "iceberg",
-            before = [[
-          vim.o.background = "dark"
-        ]],
-          },
+          { name = "forest-night", colorscheme = "forest-night" },
+          { name = "Ristretto", colorscheme = "monokai-pro-ristretto" },
+          { name = "Bamboo", colorscheme = "bamboo" },
         },
         live_preview = true, -- preview when cycling through themes
         remember = true, -- remember last used theme
@@ -91,8 +87,9 @@ return {
       "projekt0n/github-nvim-theme",
       "EdenEast/nightfox.nvim",
       "sainnhe/sonokai",
-      "craftzdog/solarized-osaka.nvim",
-      "cocopon/iceberg.vim",
+      "adibhanna/forest-night.nvim",
+      "loctvl842/monokai-pro.nvim",
+      "ribru17/bamboo.nvim",
     },
   },
 }
