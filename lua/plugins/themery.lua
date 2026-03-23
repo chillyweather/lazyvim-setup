@@ -36,6 +36,7 @@ return {
           { name = "NordFox", colorscheme = "nordfox" },
           { name = "Catppuccin Frappe", colorscheme = "catppuccin-frappe" },
           { name = "Github Dark", colorscheme = "github_dark" },
+          { name = "Tokyonight Night (Ghostty)", colorscheme = "tokyonight-night" },
           { name = "Tokyonight Storm", colorscheme = "tokyonight-storm" },
           { name = "NightFox", colorscheme = "nightfox" },
           { name = "Catppuccin Mocha", colorscheme = "catppuccin-mocha" },
